@@ -6,15 +6,23 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class OutTakeq {
 
-
-    // public static double =
+    Servo miniservo1, miniservo2, servo1, servo2, servo3, servo4;
 
     enum State {
-        UP, DOWN;
+        STAGE_ONE, // asteapta sa urce liftul
+        STAGE_TWO, // power = 1 se invarte outtakeul idk
+        STAGE_THREE // pixeli
+
+
     }
-    State state= State.DOWN;
-    public OutTakeq(HardwareMap hm)
+    public OutTakeq(HardwareMap hardwareMap)
     {
+        miniservo1 = hardwareMap.get(Servo.class, "mini1");
+        miniservo2 = hardwareMap.get(Servo.class, "mini2");
+        servo1 = hardwareMap.get(Servo.class, "servo1");
+        servo2 = hardwareMap.get(Servo.class, "servo2");
+        servo3 = hardwareMap.get(Servo.class, "servo3");
+        servo4 = hardwareMap.get(Servo.class, "servo4");
 
     }
 
