@@ -13,19 +13,20 @@ public class ServoZero extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
 
         servo1 = hardwareMap.get(Servo.class, "servo1");
+        servo1.setDirection(Servo.Direction.REVERSE);
         servo2 = hardwareMap.get(Servo.class, "servo2");
         servo1.setPosition(0);
         servo2.setPosition(0);
 
         waitForStart();
 
-        while (opModeIsActive()&&isStopRequested())
+        while (opModeIsActive()&&!isStopRequested())
         {
             if (gamepad1.a&&!wasAPrevPressed)
             {
                 if(zero1)
                 {
-                    servo1.setPosition(0.5);
+                    servo1.setPosition(1);
                     zero1 = false;
                 }
                 else {
@@ -39,7 +40,7 @@ public class ServoZero extends LinearOpMode {
             {
                 if(zero2) {
 
-                    servo2.setPosition(0.5);
+                    servo2.setPosition(1);
                     zero2 = false;
                 }
                 else {
@@ -52,15 +53,15 @@ public class ServoZero extends LinearOpMode {
             {
                if(zero3)
                {
-                   servo1.setPosition(0.5);
-                   servo2.setPosition(0.5);
-                   zero3 = true;
+                   servo1.setPosition(1);
+                   servo2.setPosition(1);
+                   zero3 = false;
                }
                else
                {
                    servo1.setPosition(0);
                    servo2.setPosition(0);
-                   zero3 = false;
+                   zero3 = true;
                }
             }
             wasYPrevPressed = gamepad1.y;
