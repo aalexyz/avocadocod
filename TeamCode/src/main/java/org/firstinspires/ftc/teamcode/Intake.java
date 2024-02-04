@@ -20,8 +20,7 @@ public class Intake {
         {
             mapping.intakeMotor.setPower(1);
         }
-        else mapping.intakeMotor.setPower(0);
-        if (gamepad.square)
+        else if (gamepad.square)
         {
             mapping.intakeMotor.setPower(-1);
         }
