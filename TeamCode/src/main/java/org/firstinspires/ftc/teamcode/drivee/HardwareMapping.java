@@ -13,23 +13,22 @@ public class HardwareMapping {
     public static final String BACK_RIGHT_MOTOR = "motorBR";
     public static final String INTAKE_MOTOR = "motorIntake";
 
-    public static final String SERVO_GOBILDA = "servoGobilda";
+    //public static final String SERVO_GOBILDA = "servoGobilda";
 
-    public static final String SERVO_REV = "servoRev";
+    //public static final String SERVO_REV = "servoRev";
 
     public final DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, intakeMotor;
-    public final Servo servoGobilda, servoRev;
+    // public final Servo servoGobilda, servoRev;
     public final IMU imu;
 
-    public HardwareMapping(DcMotor frontLeftMotor, DcMotor backLeftMotor, DcMotor frontRightMotor, DcMotor backRightMotor, DcMotor intakeMotor, IMU imu, Servo servoGobilda, Servo servoRev) {
+    public HardwareMapping(DcMotor frontLeftMotor, DcMotor backLeftMotor, DcMotor frontRightMotor, DcMotor backRightMotor, DcMotor intakeMotor, IMU imu) {
         this.frontLeftMotor = frontLeftMotor;
         this.backLeftMotor = backLeftMotor;
         this.frontRightMotor = frontRightMotor;
         this.backRightMotor = backRightMotor;
         this.intakeMotor = intakeMotor;
         this.imu = imu;
-        this.servoGobilda = servoGobilda;
-        this.servoRev = servoRev;
+
 
         frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -50,13 +49,13 @@ public class HardwareMapping {
     }
 
     public static HardwareMapping from(HardwareMap map) {
-        return new HardwareMapping(map.dcMotor.get(FRONT_LEFT_MOTOR),
+        return new HardwareMapping(
+                map.dcMotor.get(FRONT_LEFT_MOTOR),
                 map.dcMotor.get(BACK_LEFT_MOTOR),
                 map.dcMotor.get(FRONT_RIGHT_MOTOR),
                 map.dcMotor.get(BACK_RIGHT_MOTOR),
                 map.dcMotor.get(INTAKE_MOTOR),
-                map.get(IMU.class, "imu"),
-                map.servo.get(SERVO_GOBILDA),
-                map.servo.get(SERVO_REV));
+                map.get(IMU.class, "imu")
+                );
     }
 }

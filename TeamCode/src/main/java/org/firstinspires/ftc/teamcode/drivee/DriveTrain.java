@@ -19,7 +19,7 @@ public class DriveTrain {
         double den = Math.abs(x)+Math.abs(y)+Math.abs(r);
         double power;
 
-        if (gamepad.a)
+        if (gamepad.x)
         {
             power = 1f;
         }

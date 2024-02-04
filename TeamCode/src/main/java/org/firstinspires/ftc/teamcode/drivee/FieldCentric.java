@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.drivee;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -12,15 +11,15 @@ public class FieldCentric {
 
     private final HardwareMapping mapping;
     IMU imu;
-
+    double botHeading;
     public FieldCentric(HardwareMapping hardwareMap)
     {
         this.mapping = hardwareMap;
 
         IMU.Parameters parameters = new IMU.Parameters
                 (new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.UP,
-                RevHubOrientationOnRobot.UsbFacingDirection.FORWARD)
+                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
+                RevHubOrientationOnRobot.UsbFacingDirection.DOWN)
         );
         mapping.imu.initialize(parameters);
 
@@ -36,14 +35,9 @@ public class FieldCentric {
         double y = -gamepad.left_stick_y;
         double r = gamepad.right_trigger-gamepad.left_trigger;
 
-        if (gamepad.options)
-        {
-            telemetry.addLine("RESETTING...");
-            imu.resetYaw();
-        }
-        else telemetry.addLine("press share to reset yaw");
-        // gm0 field centric e greu dont trust me w it
-        double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+
+
+        botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
 
         double rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
         double rotY = x * Math.sin(-botHeading) + y * Math.cos(-botHeading);

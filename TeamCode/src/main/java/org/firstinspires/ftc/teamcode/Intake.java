@@ -15,8 +15,6 @@ public class Intake {
 
     public void update(Gamepad gamepad)
     {
-        // la outtake se roteste motor 2 sensuri ata slidere
-        // lift 3 servouri crap
 
         if (gamepad.circle)
         {
